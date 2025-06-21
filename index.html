@@ -20,8 +20,13 @@
                     <li><a href="#publications">Publications</a></li>
                     <li><a href="#experience">Work Experience</a></li>
                     <li><a href="#awards">Awards</a></li>
-                    <li><a href="#cv">CV</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
+                <div class="theme-toggle">
+                    <button id="theme-toggle" class="theme-btn" title="Toggle dark mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
                 <div class="nav-toggle">
                     <span></span>
                     <span></span>
@@ -36,56 +41,73 @@
         <section id="home" class="hero">
             <div class="container">
                 <div class="hero-content">
-                    <div class="hero-text">
-                        <h2>PhD Student</h2>
-                        <p class="institution">School of Computing<br>
-                        The Australian National University</p>
-                        
-                        <div class="about-content">
-                            <p>I am a PhD student in Computer Science with expertise in [specific areas]. My research focuses on [brief description of your research interests and goals].</p>
-                            <p>I started my PhD at ANU in September 2024 and have been working in [field] for [X] years. My research has been published in leading journals and presented at international conferences.</p>
-                            
-                            <div class="education">
-                                <h3>Education</h3>
-                                <ul>
-                                    <li><strong>Ph.D.</strong> in Computer Science, The Australian National University, 2024 - Present</li>
-                                    <li><strong>M.S.</strong> in Machine Learning and Computer Vision, The Australian National University, 2022 - 2024</li>
-                                    <li><strong>B.S.</strong> in [Field], [University], [Year]</li>
-                                </ul>
-                            </div>
-
-                            <div class="research-interests">
-                                <h3>Research Interests</h3>
-                                <ul>
-                                    <li>Research Area 1: [Brief description]</li>
-                                    <li>Research Area 2: [Brief description]</li>
-                                    <li>Research Area 3: [Brief description]</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="hero-buttons">
-                            <a href="#publications" class="btn btn-primary">View Publications</a>
-                            <a href="#cv" class="btn btn-secondary">Download CV</a>
-                        </div>
-                    </div>
                     <div class="hero-sidebar">
                         <div class="hero-image">
                             <img src="static/images/profile.jpg" alt="Yue Yin" class="profile-photo">
                         </div>
+                        <div class="profile-info">
+                            <h2 class="profile-name">Yue Yin</h2>
+                            <p style="font-size: 0.8rem; color: #888; margin: 0 0 0.5rem 0;">(殷越 Yīn Yuè)</p>
+                            <p class="profile-title">
+                                PhD student<br>
+                                <a href="https://www.anu.edu.au" target="_blank">The Australian National University</a>
+                            </p>
+                        </div>
                         <div class="social-links">
-                            <a href="https://www.linkedin.com/in/yue-yin-33b9a5253/" class="social-link" target="_blank">
-                                <i class="fab fa-linkedin"></i>
-                                <span>LinkedIn</span>
-                            </a>
-                            <a href="https://github.com/YueYin27" class="social-link" target="_blank">
+                            <a href="https://github.com/YueYin27" class="social-link" target="_blank" title="GitHub">
                                 <i class="fab fa-github"></i>
-                                <span>GitHub</span>
                             </a>
-                            <a href="https://scholar.google.com.au/citations?user=3T0vYToAAAAJ&hl=en" class="social-link" target="_blank">
-                                <i class="fab fa-google-scholar"></i>
-                                <span>Google Scholar</span>
+                            <a href="https://scholar.google.com.au/citations?user=3T0vYToAAAAJ&hl=en" class="social-link" target="_blank" title="Google Scholar">
+                                <i class="fas fa-graduation-cap"></i>
                             </a>
+                            <a href="https://www.linkedin.com/in/yue-yin-33b9a5253/" class="social-link" target="_blank" title="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hero-text">
+                        <div class="about-content">
+                            <h3><i class="fas fa-star" style="margin-right: 0.5rem; color: #3498db;"></i>About Me</h3>
+                            <p>I am a first year PhD student in the School of Computing at the Australian National University, supervised by <a href="https://sites.google.com/view/djcampbell" target="_blank" style="color: #3498db; text-decoration: none;">Dylan Campbell</a>, <a href="https://users.cecs.anu.edu.au/~hongdong/" target="_blank" style="color: #3498db; text-decoration: none;">Hongdong Li</a>, and <a href="https://users.cecs.anu.edu.au/~sgould/" target="_blank" style="color: #3498db; text-decoration: none;">Stephen Gould</a>. Currently, I am working on 3D Reconstruction and physically-plausible generation.
+                              Before that, I received a Master's degree in Machine Learning and Computer Vision from ANU in 2024, and also received a Bachelor's degree in Internet of Things Engineering from Jiangsu University of Science and Technology in 2022.</p>
+                            
+                            <div class="research-interests">
+                                <h3><i class="fas fa-laptop" style="margin-right: 0.5rem; color: #3498db;"></i>Research Interests</h3>
+                                <p>I am passionate about computer vision, particularly 3D Vision. I am also interested in image generation, 3D generation, and physically-plausible generation techniques.</p>
+                            </div>
+
+                            <div class="education">
+                                <h3><i class="fas fa-graduation-cap" style="margin-right: 0.5rem; color: #3498db;"></i>Education</h3>
+                                <ul>
+                                    <li>
+                                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                                            <div>
+                                                <strong>PhD in Computer Science</strong><br>
+                                                The Australian National University
+                                            </div>
+                                            <span style="color: #888; font-weight: normal;">Sep 2024 - Present</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                                            <div>
+                                                <strong>Master of Machine Learning and Computer Vision</strong><br>
+                                                The Australian National University
+                                            </div>
+                                            <span style="color: #888; font-weight: normal;">July 2022 - June 2024</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                                            <div>
+                                                <strong>Bachelor of Internet of Things Engineering</strong><br>
+                                                Jiangsu University of Science and Technology
+                                            </div>
+                                            <span style="color: #888; font-weight: normal;">Sep 2018 - June 2022</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -96,46 +118,46 @@
         <section id="publications" class="publications">
             <div class="container">
                 <h2 class="section-title">Publications</h2>
-                <div class="publications-filter">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="journal">Journal Articles</button>
-                    <button class="filter-btn" data-filter="conference">Conference Papers</button>
-                    <button class="filter-btn" data-filter="book">Books & Chapters</button>
-                </div>
                 <div class="publications-list">
-                    <div class="publication" data-category="journal">
-                        <div class="publication-year">2023</div>
-                        <div class="publication-content">
-                            <h3>Title of Your Journal Article</h3>
-                            <p class="authors">Yue Yin, Co-author Name</p>
-                            <p class="journal">Journal Name, Volume(Issue), Pages</p>
-                            <div class="publication-links">
-                                <a href="#" class="link-btn">DOI</a>
-                                <a href="#" class="link-btn">PDF</a>
-                            </div>
-                        </div>
-                    </div>
                     <div class="publication" data-category="conference">
-                        <div class="publication-year">2023</div>
+                        <div class="publication-year">2025</div>
                         <div class="publication-content">
-                            <h3>Title of Your Conference Paper</h3>
-                            <p class="authors">Yue Yin, Co-author Name</p>
-                            <p class="journal">Conference Name, Location, Date</p>
+                            <h3><a href="https://arxiv.org/abs/2505.05848" target="_blank" style="color: #2c3e50; text-decoration: none;">RefRef: A Synthetic Dataset and Benchmark for Reconstructing Refractive and Reflective Objects</a></h3>
+                            <p class="authors"><strong>Yue Yin</strong>, Enze Tao, Weijian Deng, Dylan Campbell</p>
+                            <p class="journal">Submitted to NeurIPS 2025</p>
                             <div class="publication-links">
-                                <a href="#" class="link-btn">DOI</a>
-                                <a href="#" class="link-btn">PDF</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="publication" data-category="book">
-                        <div class="publication-year">2022</div>
-                        <div class="publication-content">
-                            <h3>Title of Your Book Chapter</h3>
-                            <p class="authors">Yue Yin, Co-author Name</p>
-                            <p class="journal">Book Title, Publisher, Pages</p>
-                            <div class="publication-links">
-                                <a href="#" class="link-btn">DOI</a>
-                                <a href="#" class="link-btn">PDF</a>
+                                <span class="link-block">
+                                    <a href="https://arxiv.org/pdf/2505.05848" class="external-link button is-normal is-rounded is-dark" target="_blank">
+                                        <span class="icon">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        <span>Paper</span>
+                                    </a>
+                                </span>
+                                <span class="link-block">
+                                    <a href="https://arxiv.org/abs/2505.05848" class="external-link button is-normal is-rounded is-dark" target="_blank">
+                                        <span class="icon">
+                                            <i class="ai ai-arxiv"></i>
+                                        </span>
+                                        <span>arXiv</span>
+                                    </a>
+                                </span>
+                                <span class="link-block">
+                                    <a href="https://github.com/YueYin27/refref" class="external-link button is-normal is-rounded is-dark" target="_blank">
+                                        <span class="icon">
+                                            <i class="fab fa-github"></i>
+                                        </span>
+                                        <span>Code</span>
+                                    </a>
+                                </span>
+                                <span class="link-block">
+                                    <a href="https://huggingface.co/datasets/yinyue27/RefRef" class="external-link button is-normal is-rounded is-dark" target="_blank">
+                                        <span class="icon">
+                                            <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Hugging Face" style="height:1em;vertical-align:middle;">
+                                        </span>
+                                        <span>Dataset</span>
+                                    </a>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -149,27 +171,34 @@
                 <h2 class="section-title">Work Experience</h2>
                 <div class="experience-list">
                     <div class="experience-item">
-                        <div class="experience-year">2023 - Present</div>
+                        <div class="experience-year">Feb 2025 - Jun 2025</div>
                         <div class="experience-content">
-                            <h3>Position Title</h3>
+                            <h3>Academic Tutor</h3>
                             <p class="company">The Australian National University</p>
-                            <p class="description">Description of your role, responsibilities, and achievements in this position.</p>
+                            <ul style="margin-left: 20px; margin-top: 0.5rem; font-size: 0.8rem;">
+                                <li><strong>COMP4610/8610 Computer Graphics:</strong> Deliver lab contents, mark lab assignments, exam papers, final projects</li>
+                                <li><strong>COMP4528/6528 Computer Vision:</strong> Deliver lab tutorial sheets, mark exam papers</li>
+                            </ul>
                         </div>
                     </div>
                     <div class="experience-item">
-                        <div class="experience-year">2020 - 2023</div>
+                        <div class="experience-year">Jul 2024 - Nov 2024</div>
                         <div class="experience-content">
-                            <h3>Previous Position</h3>
-                            <p class="company">Previous Institution</p>
-                            <p class="description">Description of your role, responsibilities, and achievements in this position.</p>
+                            <h3>Academic Tutor</h3>
+                            <p class="company">The Australian National University</p>
+                            <ul style="margin-left: 20px; margin-top: 0.5rem; font-size: 0.8rem;">
+                                <li><strong>COMP8536 Advanced Topics in Deep Learning for Computer Vision:</strong> Design assignments, conduct lab sessions</li>
+                            </ul>
                         </div>
                     </div>
                     <div class="experience-item">
-                        <div class="experience-year">2018 - 2020</div>
+                        <div class="experience-year">Feb 2024 - Jun 2024</div>
                         <div class="experience-content">
-                            <h3>Earlier Position</h3>
-                            <p class="company">Earlier Institution</p>
-                            <p class="description">Description of your role, responsibilities, and achievements in this position.</p>
+                            <h3>Academic Tutor</h3>
+                            <p class="company">The Australian National University</p>
+                            <ul style="margin-left: 20px; margin-top: 0.5rem; font-size: 0.8rem;">
+                                <li><strong>COMP4528/6528 Computer Vision:</strong> Deliver lab tutorial sheets, conduct drop-in sessions, mark exam papers</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -182,44 +211,85 @@
                 <h2 class="section-title">Awards & Honors</h2>
                 <div class="awards-list">
                     <div class="award-item">
-                        <div class="award-year">2023</div>
+                        <div class="award-icon">
+                            <img src="static/images/ANU.png" alt="ANU" style="width: 40px; height: 40px; object-fit: contain;">
+                        </div>
                         <div class="award-content">
-                            <h3>Award Name</h3>
-                            <p class="award-organization">Awarding Organization</p>
-                            <p class="award-description">Brief description of the award and its significance.</p>
+                            <h3>ANU PhD Scholarship (2024)</h3>
+                            <p class="award-organization">The Australian National University</p>
                         </div>
                     </div>
                     <div class="award-item">
-                        <div class="award-year">2022</div>
+                        <div class="award-icon">
+                            <img src="static/images/JUST.png" alt="JUST" style="width: 40px; height: 40px; object-fit: contain;">
+                        </div>
                         <div class="award-content">
-                            <h3>Another Award</h3>
-                            <p class="award-organization">Awarding Organization</p>
-                            <p class="award-description">Brief description of the award and its significance.</p>
+                            <h3>Excellent Undergraduate Graduation Design & Excellent Graduate (2022)</h3>
+                            <p class="award-organization">Jiangsu University of Science and Technology</p>
                         </div>
                     </div>
                     <div class="award-item">
-                        <div class="award-year">2021</div>
+                        <div class="award-icon">
+                            <img src="static/images/IoT.jpg" alt="IoT Contest" style="width: 40px; height: 40px; object-fit: contain;">
+                        </div>
                         <div class="award-content">
-                            <h3>Third Award</h3>
-                            <p class="award-organization">Awarding Organization</p>
-                            <p class="award-description">Brief description of the award and its significance.</p>
+                            <h3>HUAWEI CUP National Undergraduate IoT Design Contest (2021)</h3>
+                            <p class="award-organization">East China Division: First Prize, National Final: Second Prize</p>
+                        </div>
+                    </div>
+                    <div class="award-item">
+                        <div class="award-icon">
+                            <img src="static/images/IoT.jpg" alt="IoT Contest" style="width: 40px; height: 40px; object-fit: contain;">
+                        </div>
+                        <div class="award-content">
+                            <h3>HUAWEI CUP National Undergraduate IoT Design Contest (2020)</h3>
+                            <p class="award-organization">East China Division: Special Prize, National Final: Second Prize, Baidu Innovation Award</p>
+                        </div>
+                    </div>
+                    <div class="award-item">
+                        <div class="award-icon">
+                            <img src="static/images/CIMC.webp" alt="Siemens Cup" style="width: 40px; height: 40px; object-fit: contain;">
+                        </div>
+                        <div class="award-content">
+                            <h3>The 14th 'Siemens Cup' China Intelligent Manufacturing Challenge (2020)</h3>
+                            <p class="award-organization">National Preliminary Contest: Special Prize, National Final: First Prize</p>
+                        </div>
+                    </div>
+                    <div class="award-item">
+                        <div class="award-icon">
+                            <img src="static/images/JUST.png" alt="JUST" style="width: 40px; height: 40px; object-fit: contain;">
+                        </div>
+                        <div class="award-content">
+                            <h3>People's Scholarship (2018-2021)</h3>
+                            <p class="award-organization">Academic years: 2018-2019, 2019-2020, 2020-2021</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- CV Section -->
-        <section id="cv" class="cv">
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
             <div class="container">
-                <h2 class="section-title">Curriculum Vitae</h2>
-                <div class="cv-content">
-                    <p>Download my complete CV for detailed information about my academic background, research, and experience.</p>
-                    <div class="cv-download">
-                        <a href="static/documents/cv.pdf" class="btn btn-primary" target="_blank">
-                            <i class="fas fa-download"></i>
-                            Download CV (PDF)
-                        </a>
+                <h2 class="section-title">Contact</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <h3><i class="fas fa-map-marker-alt" style="margin-right: 0.5rem; color: #3498db;"></i>Office</h3>
+                            <p>Desk 5A<br>
+                            Brian Anderson Building<br>
+                            115 North Rd<br>
+                            Acton ACT 2601<br>
+                            Australia</p>
+                        </div>
+                        <div class="contact-item">
+                            <h3><i class="fas fa-envelope" style="margin-right: 0.5rem; color: #3498db;"></i>Email</h3>
+                            <p><a href="mailto:yue.yin1@anu.edu.au" style="color: #3498db; text-decoration: none;">yue.yin1@anu.edu.au</a></p>
+                        </div>
+                        <div class="contact-item">
+                            <h3><i class="fas fa-globe" style="margin-right: 0.5rem; color: #3498db;"></i>Website</h3>
+                            <p><a href="https://comp.anu.edu.au/people/yue-yin/" target="_blank" style="color: #3498db; text-decoration: none;">ANU School of Computing Personal Profile</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -228,7 +298,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Yue Yin. All rights reserved.</p>
+            <p>&copy; 2025 Yue Yin. All rights reserved.</p>
         </div>
     </footer>
 
