@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yue Yin - Academic Website</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <div class="nav-brand">
+                    <h1>Yue Yin</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#publications">Publications</a></li>
+                    <li><a href="#experience">Work Experience</a></li>
+                    <li><a href="#awards">Awards</a></li>
+                    <li><a href="#cv">CV</a></li>
+                </ul>
+                <div class="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h2>PhD Student</h2>
+                        <p class="institution">School of Computing<br>
+                        The Australian National University</p>
+                        
+                        <div class="about-content">
+                            <p>I am a PhD student in Computer Science with expertise in [specific areas]. My research focuses on [brief description of your research interests and goals].</p>
+                            <p>I started my PhD at ANU in September 2024 and have been working in [field] for [X] years. My research has been published in leading journals and presented at international conferences.</p>
+                            
+                            <div class="education">
+                                <h3>Education</h3>
+                                <ul>
+                                    <li><strong>Ph.D.</strong> in Computer Science, The Australian National University, 2024 - Present</li>
+                                    <li><strong>M.S.</strong> in Machine Learning and Computer Vision, The Australian National University, 2022 - 2024</li>
+                                    <li><strong>B.S.</strong> in [Field], [University], [Year]</li>
+                                </ul>
+                            </div>
+
+                            <div class="research-interests">
+                                <h3>Research Interests</h3>
+                                <ul>
+                                    <li>Research Area 1: [Brief description]</li>
+                                    <li>Research Area 2: [Brief description]</li>
+                                    <li>Research Area 3: [Brief description]</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="hero-buttons">
+                            <a href="#publications" class="btn btn-primary">View Publications</a>
+                            <a href="#cv" class="btn btn-secondary">Download CV</a>
+                        </div>
+                    </div>
+                    <div class="hero-sidebar">
+                        <div class="hero-image">
+                            <img src="static/images/profile.jpg" alt="Yue Yin" class="profile-photo">
+                        </div>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/yue-yin-33b9a5253/" class="social-link" target="_blank">
+                                <i class="fab fa-linkedin"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="https://github.com/YueYin27" class="social-link" target="_blank">
+                                <i class="fab fa-github"></i>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://scholar.google.com.au/citations?user=3T0vYToAAAAJ&hl=en" class="social-link" target="_blank">
+                                <i class="fab fa-google-scholar"></i>
+                                <span>Google Scholar</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications" class="publications">
+            <div class="container">
+                <h2 class="section-title">Publications</h2>
+                <div class="publications-filter">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="journal">Journal Articles</button>
+                    <button class="filter-btn" data-filter="conference">Conference Papers</button>
+                    <button class="filter-btn" data-filter="book">Books & Chapters</button>
+                </div>
+                <div class="publications-list">
+                    <div class="publication" data-category="journal">
+                        <div class="publication-year">2023</div>
+                        <div class="publication-content">
+                            <h3>Title of Your Journal Article</h3>
+                            <p class="authors">Yue Yin, Co-author Name</p>
+                            <p class="journal">Journal Name, Volume(Issue), Pages</p>
+                            <div class="publication-links">
+                                <a href="#" class="link-btn">DOI</a>
+                                <a href="#" class="link-btn">PDF</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="publication" data-category="conference">
+                        <div class="publication-year">2023</div>
+                        <div class="publication-content">
+                            <h3>Title of Your Conference Paper</h3>
+                            <p class="authors">Yue Yin, Co-author Name</p>
+                            <p class="journal">Conference Name, Location, Date</p>
+                            <div class="publication-links">
+                                <a href="#" class="link-btn">DOI</a>
+                                <a href="#" class="link-btn">PDF</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="publication" data-category="book">
+                        <div class="publication-year">2022</div>
+                        <div class="publication-content">
+                            <h3>Title of Your Book Chapter</h3>
+                            <p class="authors">Yue Yin, Co-author Name</p>
+                            <p class="journal">Book Title, Publisher, Pages</p>
+                            <div class="publication-links">
+                                <a href="#" class="link-btn">DOI</a>
+                                <a href="#" class="link-btn">PDF</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Experience Section -->
+        <section id="experience" class="experience">
+            <div class="container">
+                <h2 class="section-title">Work Experience</h2>
+                <div class="experience-list">
+                    <div class="experience-item">
+                        <div class="experience-year">2023 - Present</div>
+                        <div class="experience-content">
+                            <h3>Position Title</h3>
+                            <p class="company">The Australian National University</p>
+                            <p class="description">Description of your role, responsibilities, and achievements in this position.</p>
+                        </div>
+                    </div>
+                    <div class="experience-item">
+                        <div class="experience-year">2020 - 2023</div>
+                        <div class="experience-content">
+                            <h3>Previous Position</h3>
+                            <p class="company">Previous Institution</p>
+                            <p class="description">Description of your role, responsibilities, and achievements in this position.</p>
+                        </div>
+                    </div>
+                    <div class="experience-item">
+                        <div class="experience-year">2018 - 2020</div>
+                        <div class="experience-content">
+                            <h3>Earlier Position</h3>
+                            <p class="company">Earlier Institution</p>
+                            <p class="description">Description of your role, responsibilities, and achievements in this position.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Awards Section -->
+        <section id="awards" class="awards">
+            <div class="container">
+                <h2 class="section-title">Awards & Honors</h2>
+                <div class="awards-list">
+                    <div class="award-item">
+                        <div class="award-year">2023</div>
+                        <div class="award-content">
+                            <h3>Award Name</h3>
+                            <p class="award-organization">Awarding Organization</p>
+                            <p class="award-description">Brief description of the award and its significance.</p>
+                        </div>
+                    </div>
+                    <div class="award-item">
+                        <div class="award-year">2022</div>
+                        <div class="award-content">
+                            <h3>Another Award</h3>
+                            <p class="award-organization">Awarding Organization</p>
+                            <p class="award-description">Brief description of the award and its significance.</p>
+                        </div>
+                    </div>
+                    <div class="award-item">
+                        <div class="award-year">2021</div>
+                        <div class="award-content">
+                            <h3>Third Award</h3>
+                            <p class="award-organization">Awarding Organization</p>
+                            <p class="award-description">Brief description of the award and its significance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CV Section -->
+        <section id="cv" class="cv">
+            <div class="container">
+                <h2 class="section-title">Curriculum Vitae</h2>
+                <div class="cv-content">
+                    <p>Download my complete CV for detailed information about my academic background, research, and experience.</p>
+                    <div class="cv-download">
+                        <a href="static/documents/cv.pdf" class="btn btn-primary" target="_blank">
+                            <i class="fas fa-download"></i>
+                            Download CV (PDF)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Yue Yin. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
