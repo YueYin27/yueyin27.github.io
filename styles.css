@@ -77,6 +77,8 @@ nav {
     display: flex;
     list-style: none;
     gap: 1.5rem;
+    margin-left: auto;
+    margin-right: 1rem;
 }
 
 .nav-menu a {
@@ -984,4 +986,18 @@ footer {
 [data-theme="dark"] .experience-item {
     background: var(--bg-primary);
     border: none;
+}
+
+[data-theme="dark"] .social-link {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .social-link:hover {
+    background: var(--text-primary);
+    color: var(--bg-primary);
+}
+
+[data-theme="dark"] .social-link i {
+    color: var(--text-primary);
 } 
