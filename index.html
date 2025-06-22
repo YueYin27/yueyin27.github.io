@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yue Yin - Academic Website</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐱</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 640 512%22><path fill=%22%233498db%22 d=%22M352 124.5l-51.9-13c-6.5-1.6-11.3-7.1-12-13.8s2.8-13.1 8.7-16.1l40.8-20.4L294.4 28.8c-5.5-4.1-7.8-11.3-5.6-17.9S297.1 0 304 0L416 0l32 0 16 0c30.2 0 58.7 14.2 76.8 38.4l57.6 76.8c6.2 8.3 9.6 18.4 9.6 28.8c0 26.5-21.5 48-48 48l-21.5 0c-17 0-33.3-6.7-45.3-18.7L480 160l-32 0 0 21.5c0 24.8 12.8 47.9 33.8 61.1l106.6 66.6c32.1 20.1 51.6 55.2 51.6 93.1C640 462.9 590.9 512 530.2 512L496 512l-64 0L32.3 512c-3.3 0-6.6-.4-9.6-1.4C13.5 507.8 6 501 2.4 492.1C1 488.7 .2 485.2 0 481.4c-.2-3.7 .3-7.3 1.3-10.7c2.8-9.2 9.6-16.7 18.6-20.4c3-1.2 6.2-2 9.5-2.2L433.3 412c8.3-.7 14.7-7.7 14.7-16.1c0-4.3-1.7-8.4-4.7-11.4l-44.4-44.4c-30-30-46.9-70.7-46.9-113.1l0-45.5 0-57zM512 72.3c0-.1 0-.2 0-.3s0-.2 0-.3l0 .6zm-1.3 7.4L464.3 68.1c-.2 1.3-.3 2.6-.3 3.9c0 13.3 10.7 24 24 24c10.6 0 19.5-6.8 22.7-16.3zM130.9 116.5c16.3-14.5 40.4-16.2 58.5-4.1l130.6 87 0 27.5c0 32.8 8.4 64.8 24 93l-232 0c-6.7 0-12.7-4.2-15-10.4s-.5-13.3 4.6-17.7L171 232.3 18.4 255.8c-7 1.1-13.9-2.6-16.9-9s-1.5-14.1 3.8-18.8L130.9 116.5z%22/></svg>">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <script src="https://unpkg.com/cursor-effects@latest/dist/browser.js"></script>
 </head>
 <body>
     <header>
@@ -26,6 +28,11 @@
                 <div class="theme-toggle">
                     <button id="theme-toggle" class="theme-btn" title="Toggle dark mode">
                         <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+                <div class="cursor-toggle" data-tooltip="Enable cursor effect">
+                    <button id="cursor-toggle" class="cursor-btn" title="Toggle cursor effect">
+                        <i class="fas fa-magic"></i>
                     </button>
                 </div>
                 <div class="nav-toggle">
@@ -48,7 +55,7 @@
                         </div>
                         <div class="profile-info">
                             <h2 class="profile-name">Yue Yin</h2>
-                            <p style="font-size: 0.8rem; color: #888; margin: 0 0 0.5rem 0;">(殷越 Yīn Yuè)</p>
+                            <p style="font-size: 0.8rem; color: #888; margin: 0 0 0.5rem 0;" data-tooltip="Pronunciation Guide:&#10;Yīn: 'een' (high, flat pitch);&#10;Yuè: 'you'+'eh' (quick & smooth)">(殷越 Yīn Yuè)</p>
                             <p class="profile-title">
                                 PhD student<br>
                                 <a href="https://www.anu.edu.au" target="_blank">The Australian National University</a>
@@ -69,12 +76,13 @@
                     <div class="hero-text">
                         <div class="about-content">
                             <h3><i class="fas fa-star" style="margin-right: 0.5rem; color: #3498db;"></i>About Me</h3>
-                            <p>I am a first year PhD student in the School of Computing at the Australian National University, supervised by <a href="https://sites.google.com/view/djcampbell" target="_blank" style="color: #3498db; text-decoration: none;">Dylan Campbell</a>, <a href="https://users.cecs.anu.edu.au/~hongdong/" target="_blank" style="color: #3498db; text-decoration: none;">Hongdong Li</a>, and <a href="https://users.cecs.anu.edu.au/~sgould/" target="_blank" style="color: #3498db; text-decoration: none;">Stephen Gould</a>. Currently, I am working on 3D Reconstruction and physically-plausible generation.
-                              Before that, I received a Master's degree in Machine Learning and Computer Vision from ANU in 2024, and also received a Bachelor's degree in Internet of Things Engineering from Jiangsu University of Science and Technology in 2022.</p>
+                            <p>I am a first-year PhD student in the School of Computing at <a href="https://www.anu.edu.au" target="_blank">The Australian National University</a>, supervised by <a href="https://sites.google.com/view/djcampbell" target="_blank" style="color: #3498db; text-decoration: none;">Dr. Dylan Campbell</a>, <a href="https://users.cecs.anu.edu.au/~hongdong/" target="_blank" style="color: #3498db; text-decoration: none;">Prof. Hongdong Li</a>, and <a href="https://users.cecs.anu.edu.au/~sgould/" target="_blank" style="color: #3498db; text-decoration: none;">Prof. Stephen Gould</a>.
+                              Currently, I am working on projects in 3D reconstruction and physically plausible generation.
+                              Before that, I received a master's degree in Machine Learning and Computer Vision from the Australian National University, and a bachelor's degree in Internet of Things Engineering from Jiangsu University of Science and Technology with the Excellent Graduate Award.</p>
                             
                             <div class="research-interests">
                                 <h3><i class="fas fa-laptop" style="margin-right: 0.5rem; color: #3498db;"></i>Research Interests</h3>
-                                <p>I am passionate about computer vision, particularly 3D Vision. I am also interested in image generation, 3D generation, and physically-plausible generation techniques.</p>
+                                <p>I am passionate about computer vision, particularly 3D vision, and have strong interests in image generation, 3D generation, and physically plausible generative techniques.</p>
                             </div>
 
                             <div class="education">
@@ -83,8 +91,9 @@
                                     <li>
                                         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                                             <div>
-                                                <strong>PhD in Computer Science</strong><br>
-                                                The Australian National University
+                                                <strong><a href="https://comp.anu.edu.au/study/research/doctor-philosophy/" target="_blank">PhD in Computer Science</a></strong><br>
+                                                <img src="static/images/ANU.png" alt="ANU" style="width: 16px; height: 16px; margin-right: 8px; vertical-align: middle; display: inline-block;">
+                                                <a href="https://www.anu.edu.au" target="_blank">The Australian National University</a>
                                             </div>
                                             <span style="color: #888; font-weight: normal;">Sep 2024 - Present</span>
                                         </div>
@@ -92,8 +101,9 @@
                                     <li>
                                         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                                             <div>
-                                                <strong>Master of Machine Learning and Computer Vision</strong><br>
-                                                The Australian National University
+                                                <strong><a href="https://programsandcourses.anu.edu.au/2022/program/mmlcv" target="_blank">Master of Machine Learning and Computer Vision</a></strong><br>
+                                                <img src="static/images/ANU.png" alt="ANU" style="width: 16px; height: 16px; margin-right: 8px; vertical-align: middle; display: inline-block;">
+                                                <a href="https://www.anu.edu.au" target="_blank">The Australian National University</a>
                                             </div>
                                             <span style="color: #888; font-weight: normal;">July 2022 - June 2024</span>
                                         </div>
@@ -102,6 +112,7 @@
                                         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                                             <div>
                                                 <strong>Bachelor of Internet of Things Engineering</strong><br>
+                                                <img src="static/images/JUST.png" alt="JUST" style="width: 16px; height: 16px; margin-right: 8px; vertical-align: middle; display: inline-block;">
                                                 Jiangsu University of Science and Technology
                                             </div>
                                             <span style="color: #888; font-weight: normal;">Sep 2018 - June 2022</span>
@@ -121,11 +132,17 @@
                 <h2 class="section-title">Publications</h2>
                 <div class="publications-list">
                     <div class="publication" data-category="conference">
-                        <div class="publication-year">2025</div>
+                        <div class="publication-image">
+                            <div class="image-container">
+                                <a href="https://arxiv.org/pdf/2505.05848" target="_blank">
+                                    <img src="static/images/refref.png" alt="RefRef Method" class="preview-image">
+                                </a>
+                            </div>
+                        </div>
                         <div class="publication-content">
                             <h3><a href="https://arxiv.org/abs/2505.05848" target="_blank" style="color: #2c3e50; text-decoration: none;">RefRef: A Synthetic Dataset and Benchmark for Reconstructing Refractive and Reflective Objects</a></h3>
                             <p class="authors"><strong>Yue Yin</strong>, Enze Tao, Weijian Deng, Dylan Campbell</p>
-                            <p class="journal">Submitted to NeurIPS 2025</p>
+                            <p class="journal">arXiv Preprint • Submitted to NeurIPS 2025</p>
                             <div class="publication-links">
                                 <span class="link-block">
                                     <a href="https://arxiv.org/pdf/2505.05848" class="external-link button is-normal is-rounded is-dark" target="_blank">
@@ -174,32 +191,38 @@
                     <div class="experience-item">
                         <div class="experience-year">Feb 2025 - Jun 2025</div>
                         <div class="experience-content">
-                            <h3>Academic Tutor</h3>
-                            <p class="company">The Australian National University</p>
+                            <h3 style="margin: 0; margin-bottom: 0.5rem;">Academic Tutor</h3>
                             <ul style="margin-left: 20px; margin-top: 0.5rem; font-size: 0.8rem;">
-                                <li><strong>COMP4610/8610 Computer Graphics:</strong> Deliver lab contents, mark lab assignments, exam papers, final projects</li>
-                                <li><strong>COMP4528/6528 Computer Vision:</strong> Deliver lab tutorial sheets, mark exam papers</li>
+                                <li><strong><a href="https://programsandcourses.anu.edu.au/course/comp4610" target="_blank" style="color: inherit; text-decoration: none;">COMP4610/8610 Computer Graphics</a>:</strong> Deliver lab contents, mark lab assignments, exam papers, final projects</li>
+                                <li><strong><a href="https://programsandcourses.anu.edu.au/2025/course/comp6528" target="_blank" style="color: inherit; text-decoration: none;">COMP4528/6528 Computer Vision</a>:</strong> Deliver lab tutorial sheets, mark exam papers</li>
                             </ul>
+                        </div>
+                        <div style="position: absolute; top: 1rem; right: 1rem;">
+                            <p class="company" style="margin: 0; color: #666;"><img src="static/images/ANU.png" alt="ANU" style="width: 16px; height: 16px; margin-right: 8px; vertical-align: middle; display: inline-block;"><a href="https://www.anu.edu.au" target="_blank">The Australian National University</a></p>
                         </div>
                     </div>
                     <div class="experience-item">
                         <div class="experience-year">Jul 2024 - Nov 2024</div>
                         <div class="experience-content">
-                            <h3>Academic Tutor</h3>
-                            <p class="company">The Australian National University</p>
+                            <h3 style="margin: 0; margin-bottom: 0.5rem;">Academic Tutor</h3>
                             <ul style="margin-left: 20px; margin-top: 0.5rem; font-size: 0.8rem;">
-                                <li><strong>COMP8536 Advanced Topics in Deep Learning for Computer Vision:</strong> Design assignments, conduct lab sessions</li>
+                                <li><strong><a href="https://programsandcourses.anu.edu.au/2024/course/comp8536" target="_blank" style="color: inherit; text-decoration: none;">COMP8536 Advanced Topics in Deep Learning for Computer Vision</a>:</strong> Design assignments, conduct lab sessions</li>
                             </ul>
+                        </div>
+                        <div style="position: absolute; top: 1rem; right: 1rem;">
+                            <p class="company" style="margin: 0; color: #666;"><img src="static/images/ANU.png" alt="ANU" style="width: 16px; height: 16px; margin-right: 8px; vertical-align: middle; display: inline-block;"><a href="https://www.anu.edu.au" target="_blank">The Australian National University</a></p>
                         </div>
                     </div>
                     <div class="experience-item">
                         <div class="experience-year">Feb 2024 - Jun 2024</div>
                         <div class="experience-content">
-                            <h3>Academic Tutor</h3>
-                            <p class="company">The Australian National University</p>
+                            <h3 style="margin: 0; margin-bottom: 0.5rem;">Academic Tutor</h3>
                             <ul style="margin-left: 20px; margin-top: 0.5rem; font-size: 0.8rem;">
-                                <li><strong>COMP4528/6528 Computer Vision:</strong> Deliver lab tutorial sheets, conduct drop-in sessions, mark exam papers</li>
+                                <li><strong><a href="https://programsandcourses.anu.edu.au/2024/course/comp6528" target="_blank" style="color: inherit; text-decoration: none;">COMP4528/6528 Computer Vision</a>:</strong> Deliver lab tutorial sheets, conduct drop-in sessions, mark exam papers</li>
                             </ul>
+                        </div>
+                        <div style="position: absolute; top: 1rem; right: 1rem;">
+                            <p class="company" style="margin: 0; color: #666;"><img src="static/images/ANU.png" alt="ANU" style="width: 16px; height: 16px; margin-right: 8px; vertical-align: middle; display: inline-block;"><a href="https://www.anu.edu.au" target="_blank">The Australian National University</a></p>
                         </div>
                     </div>
                 </div>
@@ -216,54 +239,60 @@
                             <img src="static/images/ANU.png" alt="ANU" style="width: 40px; height: 40px; object-fit: contain;">
                         </div>
                         <div class="award-content">
-                            <h3>ANU PhD Scholarship (2024)</h3>
-                            <p class="award-organization">The Australian National University</p>
+                            <h3>ANU PhD Scholarship</h3>
+                            <p class="award-organization"><a href="https://www.anu.edu.au" target="_blank">The Australian National University</a></p>
                         </div>
+                        <div class="award-year">2024</div>
                     </div>
                     <div class="award-item">
                         <div class="award-icon">
                             <img src="static/images/JUST.png" alt="JUST" style="width: 40px; height: 40px; object-fit: contain;">
                         </div>
                         <div class="award-content">
-                            <h3>Excellent Undergraduate Graduation Design & Excellent Graduate (2022)</h3>
+                            <h3>Excellent Undergraduate Graduation Design & Excellent Graduate</h3>
                             <p class="award-organization">Jiangsu University of Science and Technology</p>
                         </div>
+                        <div class="award-year">2022</div>
                     </div>
                     <div class="award-item">
                         <div class="award-icon">
                             <img src="static/images/IoT.jpg" alt="IoT Contest" style="width: 40px; height: 40px; object-fit: contain;">
                         </div>
                         <div class="award-content">
-                            <h3>HUAWEI CUP National Undergraduate IoT Design Contest (2021)</h3>
+                            <h3>HUAWEI CUP National Undergraduate IoT Design Contest</h3>
                             <p class="award-organization">East China Division: First Prize, National Final: Second Prize</p>
                         </div>
+                        <div class="award-year">2021</div>
                     </div>
                     <div class="award-item">
                         <div class="award-icon">
                             <img src="static/images/IoT.jpg" alt="IoT Contest" style="width: 40px; height: 40px; object-fit: contain;">
                         </div>
                         <div class="award-content">
-                            <h3>HUAWEI CUP National Undergraduate IoT Design Contest (2020)</h3>
+                            <h3>HUAWEI CUP National Undergraduate IoT Design Contest</h3>
                             <p class="award-organization">East China Division: Special Prize, National Final: Second Prize, Baidu Innovation Award</p>
                         </div>
+                        <div class="award-year">2020</div>
                     </div>
                     <div class="award-item">
                         <div class="award-icon">
                             <img src="static/images/CIMC.webp" alt="Siemens Cup" style="width: 40px; height: 40px; object-fit: contain;">
                         </div>
                         <div class="award-content">
-                            <h3>The 14th 'Siemens Cup' China Intelligent Manufacturing Challenge (2020)</h3>
+                            <h3>The 14th 'Siemens Cup' China Intelligent Manufacturing Challenge</h3>
                             <p class="award-organization">National Preliminary Contest: Special Prize, National Final: First Prize</p>
                         </div>
+                        <div class="award-year">2020</div>
                     </div>
                     <div class="award-item">
                         <div class="award-icon">
                             <img src="static/images/JUST.png" alt="JUST" style="width: 40px; height: 40px; object-fit: contain;">
                         </div>
                         <div class="award-content">
-                            <h3>People's Scholarship (2018-2021)</h3>
+                            <h3>People's Scholarship</h3>
                             <p class="award-organization">Academic years: 2018-2019, 2019-2020, 2020-2021</p>
                         </div>
+                        <div class="award-year">2018-2021</div>
                     </div>
                 </div>
             </div>
@@ -304,5 +333,45 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Cursor effect management
+        let cursorEffect = null;
+        let cursorEnabled = false;
+
+        // Initialize cursor effect toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const cursorToggle = document.getElementById('cursor-toggle');
+            const cursorToggleContainer = cursorToggle.parentElement;
+            const cursorIcon = cursorToggle.querySelector('i');
+            
+            // Set initial state (disabled)
+            cursorToggle.classList.add('disabled');
+            cursorIcon.className = 'fas fa-magic';
+            cursorToggleContainer.setAttribute('data-tooltip', 'Enable cursor effect');
+            
+            cursorToggle.addEventListener('click', function() {
+                if (cursorEnabled) {
+                    // Disable cursor effect
+                    if (cursorEffect) {
+                        cursorEffect.destroy();
+                        cursorEffect = null;
+                    }
+                    cursorEnabled = false;
+                    cursorToggle.classList.add('disabled');
+                    cursorIcon.className = 'fas fa-magic';
+                    cursorToggleContainer.setAttribute('data-tooltip', 'Enable cursor effect');
+                } else {
+                    // Enable cursor effect
+                    cursorEffect = new cursoreffects.fairyDustCursor({
+                        colors: ["#3498db", "#2c3e50", "#e74c3c", "#f39c12", "#9b59b6"]
+                    });
+                    cursorEnabled = true;
+                    cursorToggle.classList.remove('disabled');
+                    cursorIcon.className = 'fas fa-magic';
+                    cursorToggleContainer.setAttribute('data-tooltip', 'Disable cursor effect');
+                }
+            });
+        });
+    </script>
 </body>
 </html> 
