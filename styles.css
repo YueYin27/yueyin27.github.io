@@ -117,7 +117,7 @@ nav {
     flex-direction: column;
     cursor: pointer;
     position: absolute;
-    right: 0;
+    right: 10px;
     top: 50%;
     transform: translateY(-50%);
 }
@@ -209,7 +209,7 @@ nav {
     .nav-toggle {
         display: flex;
         position: absolute;
-        right: 0;
+        right: 10px;
         top: 50%;
         transform: translateY(-50%);
         z-index: 9999;
