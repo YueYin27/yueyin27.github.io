@@ -3,8 +3,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = themeToggle.querySelector('i');
     
-    // Check for saved theme preference or default to light mode
-    const currentTheme = localStorage.getItem('theme') || 'light';
+    // Function to determine time-based theme
+    function getTimeBasedTheme() {
+        const hour = new Date().getHours();
+        // Dark mode from 6 PM (18:00) to 6 AM (06:00)
+        return (hour >= 18 || hour < 6) ? 'dark' : 'light';
+    }
+    
+    // Check for saved theme preference or use time-based default
+    const savedTheme = localStorage.getItem('theme');
+    let currentTheme;
+    
+    if (savedTheme) {
+        // User has explicitly set a preference, use it
+        currentTheme = savedTheme;
+    } else {
+        // No saved preference, use time-based theme
+        currentTheme = getTimeBasedTheme();
+        localStorage.setItem('theme', currentTheme);
+    }
+    
     document.documentElement.setAttribute('data-theme', currentTheme);
     updateThemeIcon(currentTheme);
     
@@ -28,6 +46,22 @@ document.addEventListener('DOMContentLoaded', function() {
             themeToggle.title = 'Switch to dark mode';
         }
     }
+    
+    // Optional: Auto-switch theme based on time (every hour)
+    setInterval(function() {
+        const savedTheme = localStorage.getItem('theme');
+        // Only auto-switch if user hasn't explicitly set a preference
+        if (!savedTheme) {
+            const timeBasedTheme = getTimeBasedTheme();
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            
+            if (timeBasedTheme !== currentTheme) {
+                document.documentElement.setAttribute('data-theme', timeBasedTheme);
+                localStorage.setItem('theme', timeBasedTheme);
+                updateThemeIcon(timeBasedTheme);
+            }
+        }
+    }, 60000); // Check every minute
 });
 
 // Mobile Navigation Toggle
