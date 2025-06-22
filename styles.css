@@ -1093,8 +1093,8 @@ footer {
 }
 
 [data-theme="dark"] footer {
-    background: var(--bg-secondary);
-    border-top: 1px solid var(--border-color);
+    background: transparent;
+    border-top: none;
 }
 
 [data-theme="dark"] .about-content h3,
