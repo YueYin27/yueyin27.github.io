@@ -15,20 +15,33 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check for saved theme preference or use time-based default
     const savedTheme = localStorage.getItem('theme');
     const userPreference = localStorage.getItem('userThemePreference');
-    let currentTheme;
+    const lastSessionTime = localStorage.getItem('lastSessionTime');
+    const currentTime = Date.now();
     
-    console.log('Theme initialization:', { savedTheme, userPreference });
+    console.log('Theme initialization:', { savedTheme, userPreference, lastSessionTime, currentTime });
     
-    if (userPreference === 'true') {
-        // User has explicitly set a preference, use saved theme
+    // If this is a new session (page refresh/reopen), use time-based theme
+    // unless user explicitly set a preference in this session
+    const isNewSession = !lastSessionTime || (currentTime - parseInt(lastSessionTime)) > 300000; // 5 minutes
+    
+    if (userPreference === 'true' && !isNewSession) {
+        // User has explicitly set a preference in this session, use saved theme
         currentTheme = savedTheme || 'light';
-        console.log('Using user preference:', currentTheme);
+        console.log('Using user preference from current session:', currentTheme);
     } else {
-        // No user preference, use time-based theme
+        // New session or no user preference, use time-based theme
         currentTheme = getTimeBasedTheme();
         localStorage.setItem('theme', currentTheme);
+        // Clear user preference for new sessions
+        if (isNewSession) {
+            localStorage.removeItem('userThemePreference');
+            console.log('New session detected, cleared user preference');
+        }
         console.log('Using time-based theme:', currentTheme);
     }
+    
+    // Update session time
+    localStorage.setItem('lastSessionTime', currentTime);
     
     document.documentElement.setAttribute('data-theme', currentTheme);
     updateThemeIcon(currentTheme);
@@ -61,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Auto-switch theme based on time (every minute)
     setInterval(function() {
         const userPreference = localStorage.getItem('userThemePreference');
-        // Only auto-switch if user hasn't explicitly set a preference
+        // Only auto-switch if user hasn't explicitly set a preference in this session
         if (userPreference !== 'true') {
             const timeBasedTheme = getTimeBasedTheme();
             const currentTheme = document.documentElement.getAttribute('data-theme');
