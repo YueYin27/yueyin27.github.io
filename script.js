@@ -7,20 +7,27 @@ document.addEventListener('DOMContentLoaded', function() {
     function getTimeBasedTheme() {
         const hour = new Date().getHours();
         // Dark mode from 6 PM (18:00) to 6 AM (06:00)
-        return (hour >= 18 || hour < 6) ? 'dark' : 'light';
+        const isDarkTime = (hour >= 18 || hour < 6);
+        console.log(`Current hour: ${hour}, Dark mode: ${isDarkTime}`);
+        return isDarkTime ? 'dark' : 'light';
     }
     
     // Check for saved theme preference or use time-based default
     const savedTheme = localStorage.getItem('theme');
+    const userPreference = localStorage.getItem('userThemePreference');
     let currentTheme;
     
-    if (savedTheme) {
-        // User has explicitly set a preference, use it
-        currentTheme = savedTheme;
+    console.log('Theme initialization:', { savedTheme, userPreference });
+    
+    if (userPreference === 'true') {
+        // User has explicitly set a preference, use saved theme
+        currentTheme = savedTheme || 'light';
+        console.log('Using user preference:', currentTheme);
     } else {
-        // No saved preference, use time-based theme
+        // No user preference, use time-based theme
         currentTheme = getTimeBasedTheme();
         localStorage.setItem('theme', currentTheme);
+        console.log('Using time-based theme:', currentTheme);
     }
     
     document.documentElement.setAttribute('data-theme', currentTheme);
@@ -31,8 +38,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const currentTheme = document.documentElement.getAttribute('data-theme');
         const newTheme = currentTheme === 'light' ? 'dark' : 'light';
         
+        console.log('Theme toggle clicked:', { currentTheme, newTheme });
+        
         document.documentElement.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
+        localStorage.setItem('userThemePreference', 'true'); // Mark as user preference
         updateThemeIcon(newTheme);
     });
     
@@ -45,23 +55,33 @@ document.addEventListener('DOMContentLoaded', function() {
             themeIcon.className = 'fas fa-moon';
             themeToggle.title = 'Switch to dark mode';
         }
+        console.log('Theme icon updated:', theme);
     }
     
-    // Optional: Auto-switch theme based on time (every hour)
+    // Auto-switch theme based on time (every minute)
     setInterval(function() {
-        const savedTheme = localStorage.getItem('theme');
+        const userPreference = localStorage.getItem('userThemePreference');
         // Only auto-switch if user hasn't explicitly set a preference
-        if (!savedTheme) {
+        if (userPreference !== 'true') {
             const timeBasedTheme = getTimeBasedTheme();
             const currentTheme = document.documentElement.getAttribute('data-theme');
             
             if (timeBasedTheme !== currentTheme) {
+                console.log('Auto-switching theme:', { from: currentTheme, to: timeBasedTheme });
                 document.documentElement.setAttribute('data-theme', timeBasedTheme);
                 localStorage.setItem('theme', timeBasedTheme);
                 updateThemeIcon(timeBasedTheme);
             }
         }
     }, 60000); // Check every minute
+    
+    // Mobile-specific: Ensure theme toggle is accessible
+    if (window.innerWidth <= 768) {
+        console.log('Mobile device detected, ensuring theme toggle accessibility');
+        // Add touch-friendly styles if needed
+        themeToggle.style.minHeight = '44px';
+        themeToggle.style.minWidth = '44px';
+    }
 });
 
 // Mobile Navigation Toggle
