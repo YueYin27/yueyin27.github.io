@@ -1,178 +1,193 @@
-// Theme Toggle Functionality
 document.addEventListener('DOMContentLoaded', function() {
+
+    // --- Theme Management ---
     const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = themeToggle.querySelector('i');
-    
-    // Function to determine time-based theme
-    function getTimeBasedTheme() {
-        const hour = new Date().getHours();
-        // Light mode from 6 AM (06:00) to 6 PM (18:00)
-        // Dark mode from 6 PM (18:00) to 6 AM (06:00)
-        const isLightTime = (hour >= 6 && hour < 18);
-        console.log(`Current hour: ${hour}, Light mode: ${isLightTime}`);
-        return isLightTime ? 'light' : 'dark';
-    }
-    
-    // Check if this is a fresh page load using sessionStorage
-    const sessionId = sessionStorage.getItem('sessionId');
-    const isFreshLoad = !sessionId;
-    
-    // Generate new session ID if fresh load
-    if (isFreshLoad) {
-        sessionStorage.setItem('sessionId', Date.now().toString());
-    }
-    
-    console.log('Page load detection:', { 
-        isFreshLoad, 
-        sessionId,
-        referrer: document.referrer,
-        navigationType: performance.navigation.type 
-    });
-    
-    // Check for saved theme preference
-    const savedTheme = localStorage.getItem('theme');
-    const userPreference = localStorage.getItem('userThemePreference');
-    let currentTheme;
-    
-    console.log('Theme initialization:', { savedTheme, userPreference, isFreshLoad });
-    
-    if (isFreshLoad) {
-        // Fresh page load (new tab, bookmark, external link), use time-based theme
-        currentTheme = getTimeBasedTheme();
-        localStorage.setItem('theme', currentTheme);
-        // Clear user preference for fresh loads
-        localStorage.removeItem('userThemePreference');
-        console.log('Fresh load detected, using time-based theme:', currentTheme);
-    } else if (userPreference === 'true') {
-        // User has set a preference and this is a refresh, use saved theme
-        currentTheme = savedTheme || 'light';
-        console.log('Using saved user preference (refresh):', currentTheme);
-    } else {
-        // No user preference, use time-based theme
-        currentTheme = getTimeBasedTheme();
-        localStorage.setItem('theme', currentTheme);
-        console.log('No user preference, using time-based theme:', currentTheme);
-    }
-    
-    document.documentElement.setAttribute('data-theme', currentTheme);
-    updateThemeIcon(currentTheme);
-    
-    // Theme toggle click handler
-    themeToggle.addEventListener('click', function() {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        
-        console.log('Theme toggle clicked:', { currentTheme, newTheme });
-        
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        localStorage.setItem('userThemePreference', 'true'); // Mark as user preference
-        updateThemeIcon(newTheme);
-    });
-    
-    // Update theme icon based on current theme
-    function updateThemeIcon(theme) {
-        if (theme === 'dark') {
-            themeIcon.className = 'fas fa-sun';
-            themeToggle.title = 'Switch to light mode';
-        } else {
-            themeIcon.className = 'fas fa-moon';
-            themeToggle.title = 'Switch to dark mode';
+    if (themeToggle) {
+        const themeIcon = themeToggle.querySelector('i');
+
+        function setTheme(theme, isUserPreference = false) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            if (isUserPreference) {
+                localStorage.setItem('userThemePreference', 'true');
+            }
+            updateThemeIcon(theme);
         }
-        console.log('Theme icon updated:', theme);
-    }
-    
-    // Auto-switch theme based on time (every minute)
-    setInterval(function() {
-        const userPreference = localStorage.getItem('userThemePreference');
-        // Only auto-switch if user hasn't explicitly set a preference
-        if (userPreference !== 'true') {
-            const timeBasedTheme = getTimeBasedTheme();
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            
-            if (timeBasedTheme !== currentTheme) {
-                console.log('Auto-switching theme:', { from: currentTheme, to: timeBasedTheme });
-                document.documentElement.setAttribute('data-theme', timeBasedTheme);
-                localStorage.setItem('theme', timeBasedTheme);
-                updateThemeIcon(timeBasedTheme);
+
+        function updateThemeIcon(theme) {
+            if (theme === 'dark') {
+                themeIcon.className = 'fas fa-sun';
+                themeToggle.title = 'Switch to light mode';
+            } else {
+                themeIcon.className = 'fas fa-moon';
+                themeToggle.title = 'Switch to dark mode';
             }
         }
-    }, 60000); // Check every minute
-    
-    // Mobile-specific: Ensure theme toggle is accessible
-    if (window.innerWidth <= 768) {
-        console.log('Mobile device detected, ensuring theme toggle accessibility');
-        // Add touch-friendly styles if needed
-        themeToggle.style.minHeight = '44px';
-        themeToggle.style.minWidth = '44px';
-    }
-});
 
-// Mobile Navigation Toggle
-document.addEventListener('DOMContentLoaded', function() {
+        function getTimeBasedTheme() {
+            const hour = new Date().getHours();
+            const isLightTime = (hour >= 6 && hour < 18);
+            return isLightTime ? 'light' : 'dark';
+        }
+
+        function initializeTheme() {
+            const sessionId = sessionStorage.getItem('sessionId');
+            if (!sessionId) {
+                sessionStorage.setItem('sessionId', 'active');
+                localStorage.removeItem('userThemePreference');
+            }
+
+            const userPreference = localStorage.getItem('userThemePreference');
+            const savedTheme = localStorage.getItem('theme');
+            let currentTheme = 'light';
+
+            if (userPreference === 'true' && savedTheme) {
+                currentTheme = savedTheme;
+            } else {
+                currentTheme = getTimeBasedTheme();
+            }
+            setTheme(currentTheme);
+        }
+
+        themeToggle.addEventListener('click', function() {
+            const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme, true);
+        });
+        
+        initializeTheme();
+    }
+
+    // --- Language Management ---
+    const langToggle = document.getElementById('lang-toggle');
+    if (langToggle) {
+        const nameTooltip = document.querySelector('.profile-info p[data-tooltip-en]');
+        const cursorTooltip = document.querySelector('.cursor-toggle[data-tooltip-en]');
+        let currentLang = localStorage.getItem('lang') || 'en';
+
+        function setLanguage(lang) {
+            document.documentElement.setAttribute('data-lang', lang);
+            localStorage.setItem('lang', lang);
+            currentLang = lang;
+            langToggle.title = lang === 'en' ? '切换到中文' : 'Switch to English';
+
+            if (nameTooltip) nameTooltip.setAttribute('data-tooltip', nameTooltip.getAttribute(`data-tooltip-${lang}`));
+            if (cursorTooltip) cursorTooltip.setAttribute('data-tooltip', cursorTooltip.getAttribute(`data-tooltip-${lang}`));
+        }
+
+        langToggle.addEventListener('click', function() {
+            setLanguage(currentLang === 'en' ? 'zh' : 'en');
+        });
+
+        setLanguage(currentLang);
+    }
+
+    // --- Mobile Navigation ---
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
-    
-    if (navToggle && navMenu) {
-        navToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
+    if(navToggle && navMenu) {
+        navToggle.addEventListener('click', () => {
             navToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
         });
-    }
-    
-    // Close mobile menu when clicking on a link
-    const navLinks = document.querySelectorAll('.nav-menu a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
-            navToggle.classList.remove('active');
-        });
-    });
-});
 
-// Smooth Scrolling for Navigation Links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            const headerHeight = document.querySelector('header').offsetHeight;
-            const targetPosition = target.offsetTop - headerHeight;
-            
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
-
-// Publication Filtering
-document.addEventListener('DOMContentLoaded', function() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const publications = document.querySelectorAll('.publication');
-    
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const filter = this.getAttribute('data-filter');
-            
-            // Update active button
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-            
-            // Filter publications
-            publications.forEach(pub => {
-                if (filter === 'all' || pub.getAttribute('data-category') === filter) {
-                    pub.style.display = 'flex';
-                    pub.classList.add('fade-in-up');
-                } else {
-                    pub.style.display = 'none';
-                    pub.classList.remove('fade-in-up');
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu.classList.contains('active')) {
+                    navToggle.classList.remove('active');
+                    navMenu.classList.remove('active');
                 }
             });
         });
+    }
+
+    // --- Publication Filtering ---
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const publications = document.querySelectorAll('.publication');
+    if (filterButtons.length > 0 && publications.length > 0) {
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const filter = this.getAttribute('data-filter');
+                
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                publications.forEach(pub => {
+                    if (filter === 'all' || pub.getAttribute('data-category') === filter) {
+                        pub.style.display = 'flex';
+                    } else {
+                        pub.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
+});
+
+// --- Other Functionalities (Outside DOMContentLoaded) ---
+
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetElement = document.querySelector(this.getAttribute('href'));
+        if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+        }
     });
 });
+
+// Active navigation link highlighting on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('nav .nav-menu a');
+
+window.addEventListener('scroll', () => {
+    let currentId = '';
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (pageYOffset >= sectionTop - 70) { // Offset for header
+            currentId = section.getAttribute('id');
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (currentId && link.getAttribute('href').includes(currentId)) {
+            link.classList.add('active');
+        }
+    });
+    // Default to home if no section is active
+    if (!currentId && navLinks.length > 0) {
+        navLinks[0].classList.add('active');
+    }
+});
+
+// Header background on scroll
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('header');
+    if (header) {
+        if (window.scrollY > 50) {
+            header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
+        } else {
+            header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+        }
+    }
+});
+
+// Print-friendly styles
+function addPrintStyles() {
+    const style = document.createElement('style');
+    style.textContent = `
+        @media print {
+            body { font-size: 12px; color: #000; }
+            header, footer, .hero-buttons, .social-links, .publications-filter, .gallery-link, .theme-toggle, .cursor-toggle, .lang-toggle, .nav-toggle { display: none !important; }
+            section { padding: 20px 0; }
+            a { color: #000 !important; text-decoration: none !important; }
+            .publication { page-break-inside: avoid; }
+        }
+    `;
+    document.head.appendChild(style);
+}
+addPrintStyles();
 
 // Scroll Animations
 const observerOptions = {
@@ -194,40 +209,6 @@ document.addEventListener('DOMContentLoaded', function() {
     animateElements.forEach(el => {
         observer.observe(el);
     });
-});
-
-// Active Navigation Highlight
-window.addEventListener('scroll', function() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-menu a');
-    
-    let current = '';
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        const sectionHeight = section.clientHeight;
-        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-            current = section.getAttribute('id');
-        }
-    });
-    
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-        }
-    });
-});
-
-// Header Background on Scroll
-window.addEventListener('scroll', function() {
-    const header = document.querySelector('header');
-    if (window.scrollY > 50) {
-        header.style.background = 'rgba(255, 255, 255, 0.98)';
-        header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.15)';
-    } else {
-        header.style.background = 'rgba(255, 255, 255, 0.95)';
-        header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-    }
 });
 
 // Typing Effect for Hero Section (Optional)
@@ -299,20 +280,27 @@ function lazyLoadImages() {
 // Initialize lazy loading
 document.addEventListener('DOMContentLoaded', lazyLoadImages);
 
-// Print-friendly styles
-function addPrintStyles() {
-    const style = document.createElement('style');
-    style.textContent = `
-        @media print {
-            header, footer, .nav-toggle, .publications-filter, .social-links { display: none !important; }
-            body { font-size: 12pt; }
-            .hero { background: white !important; color: black !important; }
-            .section-title::after { display: none; }
-            .publication, .course, .research-area { break-inside: avoid; }
+// Auto-switch theme based on time (every minute)
+setInterval(function() {
+    const userPreference = localStorage.getItem('userThemePreference');
+    // Only auto-switch if user hasn't explicitly set a preference
+    if (userPreference !== 'true') {
+        const timeBasedTheme = getTimeBasedTheme();
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        
+        if (timeBasedTheme !== currentTheme) {
+            console.log('Auto-switching theme:', { from: currentTheme, to: timeBasedTheme });
+            document.documentElement.setAttribute('data-theme', timeBasedTheme);
+            localStorage.setItem('theme', timeBasedTheme);
+            updateThemeIcon(timeBasedTheme);
         }
-    `;
-    document.head.appendChild(style);
-}
+    }
+}, 60000); // Check every minute
 
-// Add print styles
-addPrintStyles(); 
+// Mobile-specific: Ensure theme toggle is accessible
+if (window.innerWidth <= 768) {
+    console.log('Mobile device detected, ensuring theme toggle accessibility');
+    // Add touch-friendly styles if needed
+    themeToggle.style.minHeight = '44px';
+    themeToggle.style.minWidth = '44px';
+} 
