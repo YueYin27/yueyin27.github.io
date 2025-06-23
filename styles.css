@@ -1213,13 +1213,17 @@ footer {
 }
 
 .contact-content {
-    max-width: 800px;
-    margin: 0 auto;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .contact-info {
+    width: 100%;
+    margin: 0;
+    padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
     margin-top: 1rem;
 }
@@ -1230,8 +1234,16 @@ footer {
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-height: 180px;
 }
-
+.contact-item h3, .contact-item p {
+    text-align: left;
+}
 .contact-item:hover {
     transform: translateY(-2px);
 }
@@ -1240,8 +1252,6 @@ footer {
     color: #2c3e50;
     margin-bottom: 0.5rem;
     font-size: 1rem;
-    display: flex;
-    align-items: center;
 }
 
 .contact-item p {
@@ -1894,15 +1904,16 @@ footer {
 
 .gallery-preview {
     text-align: center;
-    max-width: 800px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .gallery-preview-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
-    margin-bottom: 2rem;
+    margin: 0 auto;
+    width: 100%;
 }
 
 .gallery-preview-item {
@@ -1953,7 +1964,7 @@ footer {
 
 @media (max-width: 480px) {
     .gallery-preview-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
         gap: 0.6rem;
     }
 }
@@ -1973,4 +1984,63 @@ footer {
     [data-theme="dark"] .about-content {
         background: var(--bg-secondary);
     }
+}
+
+/* Make gallery (Life), awards, and contact sections the same width */
+.gallery, .awards, .contact {
+    /* Already use .container, but ensure max-width is consistent */
+}
+.gallery .container, .awards .container, .contact .container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Contact info: 4 columns in one row on desktop, wrap on mobile */
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+@media (max-width: 1024px) {
+    .contact-info {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 600px) {
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Ensure all contact-item cards (including visitor map) look the same */
+.contact-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-height: 180px;
+}
+[data-theme="dark"] .contact-item {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+/* Make visitor map responsive in contact-item */
+.contact-item #clustrmaps, .contact-item noscript {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.contact-item img {
+    max-width: 100%;
+    height: auto;
 } 
