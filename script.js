@@ -12,36 +12,41 @@ document.addEventListener('DOMContentLoaded', function() {
         return isDarkTime ? 'dark' : 'light';
     }
     
-    // Check for saved theme preference or use time-based default
+    // Check if this is a fresh page load (not a refresh)
+    const isFreshLoad = !document.referrer || 
+                       document.referrer.includes(window.location.origin) === false ||
+                       performance.navigation.type === 1; // TYPE_RELOAD
+    
+    console.log('Page load type:', { 
+        isFreshLoad, 
+        referrer: document.referrer, 
+        navigationType: performance.navigation.type 
+    });
+    
+    // Check for saved theme preference
     const savedTheme = localStorage.getItem('theme');
     const userPreference = localStorage.getItem('userThemePreference');
-    const lastSessionTime = localStorage.getItem('lastSessionTime');
-    const currentTime = Date.now();
+    let currentTheme;
     
-    console.log('Theme initialization:', { savedTheme, userPreference, lastSessionTime, currentTime });
+    console.log('Theme initialization:', { savedTheme, userPreference, isFreshLoad });
     
-    // If this is a new session (page refresh/reopen), use time-based theme
-    // unless user explicitly set a preference in this session
-    const isNewSession = !lastSessionTime || (currentTime - parseInt(lastSessionTime)) > 300000; // 5 minutes
-    
-    if (userPreference === 'true' && !isNewSession) {
-        // User has explicitly set a preference in this session, use saved theme
+    if (userPreference === 'true' && !isFreshLoad) {
+        // User has set a preference and this is a refresh, use saved theme
         currentTheme = savedTheme || 'light';
-        console.log('Using user preference from current session:', currentTheme);
-    } else {
-        // New session or no user preference, use time-based theme
+        console.log('Using saved user preference (refresh):', currentTheme);
+    } else if (isFreshLoad) {
+        // Fresh page load (from bookmark, new tab, external link), use time-based theme
         currentTheme = getTimeBasedTheme();
         localStorage.setItem('theme', currentTheme);
-        // Clear user preference for new sessions
-        if (isNewSession) {
-            localStorage.removeItem('userThemePreference');
-            console.log('New session detected, cleared user preference');
-        }
-        console.log('Using time-based theme:', currentTheme);
+        // Clear user preference for fresh loads
+        localStorage.removeItem('userThemePreference');
+        console.log('Fresh load detected, using time-based theme:', currentTheme);
+    } else {
+        // No user preference, use time-based theme
+        currentTheme = getTimeBasedTheme();
+        localStorage.setItem('theme', currentTheme);
+        console.log('No user preference, using time-based theme:', currentTheme);
     }
-    
-    // Update session time
-    localStorage.setItem('lastSessionTime', currentTime);
     
     document.documentElement.setAttribute('data-theme', currentTheme);
     updateThemeIcon(currentTheme);
@@ -74,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Auto-switch theme based on time (every minute)
     setInterval(function() {
         const userPreference = localStorage.getItem('userThemePreference');
-        // Only auto-switch if user hasn't explicitly set a preference in this session
+        // Only auto-switch if user hasn't explicitly set a preference
         if (userPreference !== 'true') {
             const timeBasedTheme = getTimeBasedTheme();
             const currentTheme = document.documentElement.getAttribute('data-theme');
