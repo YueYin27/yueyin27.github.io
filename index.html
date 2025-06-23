@@ -362,6 +362,10 @@
                         <!-- Visitor Globe as a contact block -->
                         <div class="contact-item">
                             <h3><i class="fas fa-map" style="margin-right: 0.5rem; color: #3498db;"></i><span class="lang-en">Visitor Map</span><span class="lang-zh">访客地球仪</span></h3>
+                            <div style="font-size: 0.9em; color: #888; margin-bottom: 0.5em;">
+                                <span class="lang-en">Total Pageviews:</span><span class="lang-zh">总访问量：</span>
+                                <span id="clustrmaps-total" style="font-weight: bold; color: #3498db;">Loading...</span>
+                            </div>
                             <div style="width: 150px; height: 150px; margin: 0 auto;">
                                 <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=WPvAcv4J3pO1IxwAB3r_eqV3UsA98Eck0TmrKsVCrUg"></script>
                             </div>
@@ -374,6 +378,21 @@
                                     max-height: 150px !important;
                                 }
                             </style>
+                            <script>
+                                // Try to fetch total pageviews from ClustrMaps public stats API
+                                fetch('https://clustrmaps.com/site/1c6rk/stats.json')
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        if (data && data.total) {
+                                            document.getElementById('clustrmaps-total').textContent = data.total.toLocaleString();
+                                        } else {
+                                            document.getElementById('clustrmaps-total').textContent = 'N/A';
+                                        }
+                                    })
+                                    .catch(() => {
+                                        document.getElementById('clustrmaps-total').textContent = 'N/A';
+                                    });
+                            </script>
                         </div>
                     </div>
                 </div>
