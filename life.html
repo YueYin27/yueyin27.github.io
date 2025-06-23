@@ -202,12 +202,12 @@
                     <h1>Yue Yin</h1>
                 </div>
                 <ul class="nav-menu">
-                    <li><a href="index.html#home">Home</a></li>
-                    <li><a href="index.html#publications">Publications</a></li>
-                    <li><a href="index.html#experience">Work Experience</a></li>
-                    <li><a href="index.html#awards">Awards</a></li>
-                    <li><a href="life.html" class="active">Life</a></li>
-                    <li><a href="index.html#contact">Contact</a></li>
+                    <li><a href="index.html#home"><span class="lang-en">Home</span><span class="lang-zh">主页</span></a></li>
+                    <li><a href="index.html#publications"><span class="lang-en">Publications</span><span class="lang-zh">学术出版</span></a></li>
+                    <li><a href="index.html#experience"><span class="lang-en">Work Experience</span><span class="lang-zh">工作经历</span></a></li>
+                    <li><a href="index.html#awards"><span class="lang-en">Awards</span><span class="lang-zh">获奖与荣誉</span></a></li>
+                    <li><a href="life.html" class="active"><span class="lang-en">Life</span><span class="lang-zh">生活</span></a></li>
+                    <li><a href="index.html#contact"><span class="lang-en">Contact</span><span class="lang-zh">联系方式</span></a></li>
                 </ul>
                 <div class="theme-toggle">
                     <button id="theme-toggle" class="theme-btn" title="Toggle dark mode">
@@ -246,7 +246,7 @@
         <div class="container">
             <!-- Graduation Photos Section -->
             <section class="gallery-section">
-                <h2>Graduation Photos</h2>
+                <h2><span class="lang-en">Graduation Photos</span><span class="lang-zh">毕业照</span></h2>
                 <div class="gallery-grid">
                     <div class="gallery-item" onclick="openModal('static/images/gallery/g1.jpg')">
                         <img src="static/images/gallery/g1.jpg" alt="Graduation Photo 1">
@@ -265,7 +265,7 @@
 
             <!-- Cat Photos Section -->
             <section class="gallery-section">
-                <h2>My Cat</h2>
+                <h2><span class="lang-en">My Cat</span><span class="lang-zh">我的猫猫</span></h2>
                 <div class="gallery-grid">
                     <div class="gallery-item" onclick="openModal('static/images/gallery/c1.jpg')">
                         <img src="static/images/gallery/c1.jpg" alt="Cat Photo 1">
@@ -296,7 +296,7 @@
 
             <!-- Animal Photos Section -->
             <section class="gallery-section">
-                <h2>I Love Animals!</h2>
+                <h2><span class="lang-en">I Love Animals!</span><span class="lang-zh">我爱动物！</span></h2>
                 <div class="gallery-grid">
                     <div class="gallery-item" onclick="openModal('static/images/gallery/a1.jpg')">
                         <img src="static/images/gallery/a1.jpg" alt="Animal Photo 1">
@@ -390,6 +390,23 @@
                 }
             });
         });
+
+        // Language Toggle Functionality for life.html
+        (function() {
+            const langToggle = document.getElementById('lang-toggle');
+            if (!langToggle) return;
+            let currentLang = localStorage.getItem('lang') || 'en';
+            function setLanguage(lang) {
+                document.documentElement.setAttribute('data-lang', lang);
+                localStorage.setItem('lang', lang);
+                currentLang = lang;
+                langToggle.title = lang === 'en' ? '切换到中文' : 'Switch to English';
+            }
+            setLanguage(currentLang);
+            langToggle.addEventListener('click', function() {
+                setLanguage(currentLang === 'en' ? 'zh' : 'en');
+            });
+        })();
     </script>
 </body>
 </html> 
