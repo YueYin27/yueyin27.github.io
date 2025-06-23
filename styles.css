@@ -1986,16 +1986,6 @@ footer {
     }
 }
 
-/* Make gallery (Life), awards, and contact sections the same width */
-.gallery, .awards, .contact {
-    /* Already use .container, but ensure max-width is consistent */
-}
-.gallery .container, .awards .container, .contact .container {
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
 /* Contact info: 4 columns in one row on desktop, wrap on mobile */
 .contact-info {
     display: grid;
