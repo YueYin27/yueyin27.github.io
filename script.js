@@ -6,20 +6,26 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to determine time-based theme
     function getTimeBasedTheme() {
         const hour = new Date().getHours();
+        // Light mode from 6 AM (06:00) to 6 PM (18:00)
         // Dark mode from 6 PM (18:00) to 6 AM (06:00)
-        const isDarkTime = (hour >= 18 || hour < 6);
-        console.log(`Current hour: ${hour}, Dark mode: ${isDarkTime}`);
-        return isDarkTime ? 'dark' : 'light';
+        const isLightTime = (hour >= 6 && hour < 18);
+        console.log(`Current hour: ${hour}, Light mode: ${isLightTime}`);
+        return isLightTime ? 'light' : 'dark';
     }
     
-    // Check if this is a fresh page load (not a refresh)
-    const isFreshLoad = !document.referrer || 
-                       document.referrer.includes(window.location.origin) === false ||
-                       performance.navigation.type === 1; // TYPE_RELOAD
+    // Check if this is a fresh page load using sessionStorage
+    const sessionId = sessionStorage.getItem('sessionId');
+    const isFreshLoad = !sessionId;
     
-    console.log('Page load type:', { 
+    // Generate new session ID if fresh load
+    if (isFreshLoad) {
+        sessionStorage.setItem('sessionId', Date.now().toString());
+    }
+    
+    console.log('Page load detection:', { 
         isFreshLoad, 
-        referrer: document.referrer, 
+        sessionId,
+        referrer: document.referrer,
         navigationType: performance.navigation.type 
     });
     
@@ -30,17 +36,17 @@ document.addEventListener('DOMContentLoaded', function() {
     
     console.log('Theme initialization:', { savedTheme, userPreference, isFreshLoad });
     
-    if (userPreference === 'true' && !isFreshLoad) {
-        // User has set a preference and this is a refresh, use saved theme
-        currentTheme = savedTheme || 'light';
-        console.log('Using saved user preference (refresh):', currentTheme);
-    } else if (isFreshLoad) {
-        // Fresh page load (from bookmark, new tab, external link), use time-based theme
+    if (isFreshLoad) {
+        // Fresh page load (new tab, bookmark, external link), use time-based theme
         currentTheme = getTimeBasedTheme();
         localStorage.setItem('theme', currentTheme);
         // Clear user preference for fresh loads
         localStorage.removeItem('userThemePreference');
         console.log('Fresh load detected, using time-based theme:', currentTheme);
+    } else if (userPreference === 'true') {
+        // User has set a preference and this is a refresh, use saved theme
+        currentTheme = savedTheme || 'light';
+        console.log('Using saved user preference (refresh):', currentTheme);
     } else {
         // No user preference, use time-based theme
         currentTheme = getTimeBasedTheme();
