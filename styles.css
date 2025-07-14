@@ -966,6 +966,18 @@ section {
     font-size: 0.85rem;
 }
 
+.authors a {
+    color: inherit !important;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.authors a:hover {
+    color: #222 !important;
+}
+[data-theme="dark"] .authors a:hover {
+    color: #888 !important; /* darker gray for hover in dark mode */
+}
+
 .journal {
     color: #888;
     margin-bottom: 0.8rem;
@@ -1588,12 +1600,12 @@ footer {
 }
 
 [data-theme="dark"] .social-link:hover {
-    background: var(--text-primary);
-    color: var(--bg-primary);
+    background: #222;
+    color: #3498db;
 }
 
 [data-theme="dark"] .social-link i {
-    color: var(--text-primary);
+    color: #3498db;
 }
 
 [data-theme="dark"] .publication-year {
