@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Theme Management ---
     const themeToggle = document.getElementById('theme-toggle');
     if (themeToggle) {
-        const themeIcon = themeToggle.querySelector('i');
-
+    const themeIcon = themeToggle.querySelector('i');
+    
         function setTheme(theme, isUserPreference = false) {
             document.documentElement.setAttribute('data-theme', theme);
             localStorage.setItem('theme', theme);
@@ -14,15 +14,15 @@ document.addEventListener('DOMContentLoaded', function() {
             updateThemeIcon(theme);
         }
 
-        function updateThemeIcon(theme) {
-            if (theme === 'dark') {
-                themeIcon.className = 'fas fa-sun';
-                themeToggle.title = 'Switch to light mode';
-            } else {
-                themeIcon.className = 'fas fa-moon';
-                themeToggle.title = 'Switch to dark mode';
-            }
+    function updateThemeIcon(theme) {
+        if (theme === 'dark') {
+            themeIcon.className = 'fas fa-sun';
+            themeToggle.title = 'Switch to light mode';
+        } else {
+            themeIcon.className = 'fas fa-moon';
+            themeToggle.title = 'Switch to dark mode';
         }
+    }
 
         function getTimeBasedTheme() {
             const hour = new Date().getHours();
@@ -89,34 +89,34 @@ document.addEventListener('DOMContentLoaded', function() {
             navToggle.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
-
+    
         document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
+        link.addEventListener('click', () => {
                 if (navMenu.classList.contains('active')) {
                     navToggle.classList.remove('active');
-                    navMenu.classList.remove('active');
+            navMenu.classList.remove('active');
                 }
-            });
         });
+    });
     }
 
     // --- Publication Filtering ---
     const filterButtons = document.querySelectorAll('.filter-btn');
     const publications = document.querySelectorAll('.publication');
     if (filterButtons.length > 0 && publications.length > 0) {
-        filterButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const filter = this.getAttribute('data-filter');
-                
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-                
-                publications.forEach(pub => {
-                    if (filter === 'all' || pub.getAttribute('data-category') === filter) {
-                        pub.style.display = 'flex';
-                    } else {
-                        pub.style.display = 'none';
-                    }
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const filter = this.getAttribute('data-filter');
+            
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            publications.forEach(pub => {
+                if (filter === 'all' || pub.getAttribute('data-category') === filter) {
+                    pub.style.display = 'flex';
+                } else {
+                    pub.style.display = 'none';
+                }
                 });
             });
         });
@@ -294,7 +294,7 @@ setInterval(function() {
             localStorage.setItem('theme', timeBasedTheme);
             updateThemeIcon(timeBasedTheme);
         }
-    }
+        }
 }, 60000); // Check every minute
 
 // Mobile-specific: Ensure theme toggle is accessible
