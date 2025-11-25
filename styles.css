@@ -337,7 +337,7 @@ nav {
     }
     
     .image-container {
-        width: 200px;
+        width: 330px;
         height: 150px;
     }
     
@@ -925,7 +925,7 @@ section {
 }
 
 .image-container {
-    width: 200px;
+    width: 330px;
     height: 150px;
 }
 
@@ -1028,6 +1028,11 @@ section {
 .external-link.button .icon img {
     height: 1em;
     vertical-align: middle;
+}
+
+/* Coming Soon buttons - look normal but do nothing */
+.external-link.button.coming-soon {
+    cursor: pointer;
 }
 
 /* Work Experience Section */

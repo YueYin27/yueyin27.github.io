@@ -81,6 +81,15 @@ document.addEventListener('DOMContentLoaded', function() {
         setLanguage(currentLang);
     }
 
+    // --- Coming Soon Buttons ---
+    document.querySelectorAll('.coming-soon').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        });
+    });
+
     // --- Mobile Navigation ---
     const navToggle = document.querySelector('.nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
