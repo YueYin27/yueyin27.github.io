@@ -372,6 +372,15 @@ nav {
         font-size: 0.75rem;
     }
     
+    .news-item {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .news-date {
+        align-self: flex-start;
+    }
+    
     .experience-item {
         flex-direction: column;
         gap: 1rem;
@@ -837,7 +846,7 @@ section {
 }
 
 .section-title {
-    text-align: center;
+    text-align: left;
     font-size: 2rem;
     margin-bottom: 2.5rem;
     color: #2c3e50;
@@ -848,8 +857,7 @@ section {
     content: '';
     position: absolute;
     bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
     width: 50px;
     height: 3px;
     background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
@@ -1033,6 +1041,57 @@ section {
 /* Coming Soon buttons - look normal but do nothing */
 .external-link.button.coming-soon {
     cursor: pointer;
+}
+
+/* News Section */
+.news {
+    background: #f8f9fa;
+}
+
+.news-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.news-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.news-item:hover {
+    transform: translateY(-2px);
+}
+
+.news-date {
+    background: #3498db;
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 12px;
+    font-weight: 600;
+    height: fit-content;
+    min-width: 90px;
+    text-align: center;
+    font-size: 0.75rem;
+    flex-shrink: 0;
+}
+
+.news-content p {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.news-content a:hover {
+    color: #3498db;
+    text-decoration: underline !important;
 }
 
 /* Work Experience Section */
@@ -1488,6 +1547,19 @@ footer {
 
 [data-theme="dark"] .publications {
     background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .news {
+    background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .news-item {
+    background: var(--bg-primary);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .news-content p {
+    color: var(--text-primary);
 }
 
 [data-theme="dark"] .experience {
